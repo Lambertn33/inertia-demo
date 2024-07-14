@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, watch } from "vue";
+import { router } from "@inertiajs/vue3";
 import Pagination from "../Components/Pagination.vue"
 interface IUser {
     id: number;
@@ -14,15 +16,29 @@ interface IPaginatorLink {
 
 interface UsersProps {
     data: IUser[]
-    links: IPaginatorLink[]
+    links: IPaginatorLink[],
 }
-defineProps<{ users: UsersProps }>();
+interface FiltersProps {
+    search: string | null;
+}
+let props = defineProps<{ users: UsersProps, filters: FiltersProps }>();
+
+let search = ref(props.filters.search);
+
+watch(search, value => {
+    router.get('/users', {
+        search: value
+    }, { preserveState: true })
+});
 </script>
 <template>
 
     <Head title="App - Users" />
     <div>
-        <h2 class="text-2xl text-center font-semibold mb-8">Users List</h2>
+        <div class="flex justify-between mb-8">
+            <h2 class="text-2xl font-semibold">Users List</h2>
+            <input type="text" v-model="search" class="border px-4 py-1 rounded-md" placeholder="Search...">
+        </div>
 
         <!--Users Table-->
         <div class="relative overflow-x-auto">

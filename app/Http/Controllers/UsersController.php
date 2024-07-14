@@ -9,11 +9,16 @@ use Inertia\Inertia;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::select(['id', 'name', 'email'])->paginate(10);
+
+        $users = User::select(['id', 'name', 'email'])
+            ->when($request->search, function ($query, $search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->paginate(10)->withQueryString();
         return Inertia::render('Users', [
-            'users' => $users
+            'users' => $users,
+            'filters' => $request->only(['search'])
         ]);
     }
 }
