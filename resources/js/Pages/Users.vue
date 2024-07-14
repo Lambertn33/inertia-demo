@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Pagination from "../Components/Pagination.vue"
 interface IUser {
     id: number;
     name: string;
@@ -59,11 +60,7 @@ defineProps<{ users: UsersProps }>();
 
         <!--Users paginator-->
         <div class="mt-8 flex justify-center">
-            <template v-for="link in users.links">
-                <Link v-if="link.url" :key="link.url" v-html="link.label" :href="link.url" class="border px-3 py-2"
-                    :class="link.active ? 'bg-blue-600 text-white' : ''" />
-                <span v-else v-html="link.label" class="border px-3 py-2" />
-            </template>
+            <Pagination :links="users.links" />
         </div>
     </div>
 </template>
