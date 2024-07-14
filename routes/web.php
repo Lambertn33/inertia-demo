@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'title' => 'Welcome to this page'
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/users', [UsersController::class, 'index']);
+Route::get('/settings', [SettingsController::class, 'index']);
