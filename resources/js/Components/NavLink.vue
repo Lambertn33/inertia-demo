@@ -1,5 +1,5 @@
 <template>
-    <Link class="text-white font-semibold lowercase text-lg" :class="active" :href="href">
+    <Link class="text-white font-semibold lowercase text-lg" :class="active ? 'underline font-bold' : ''" :href="href">
     <slot />
     </Link>
 </template>
