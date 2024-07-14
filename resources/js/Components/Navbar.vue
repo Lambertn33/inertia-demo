@@ -4,7 +4,7 @@
 
             <NavLink href="/" :active="{ 'underline font-bold': $page.component === 'Home' }">Home</NavLink>
             <NavLink href="/users" :active="{ 'underline font-bold': $page.component === 'Users' }">Users</NavLink>
-            <NavLink href="/settings" :active="{ 'underline font-bold': $page.component === 'Users' }">Settings
+            <NavLink href="/settings" :active="{ 'underline font-bold': $page.component === 'Settings' }">Settings
             </NavLink>
             <Link class="text-white font-semibold lowercase text-lg" href="/logout" method="post" as="button">Logout
             </Link>
@@ -13,6 +13,5 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
 import NavLink from "./NavLink.vue";
 </script>

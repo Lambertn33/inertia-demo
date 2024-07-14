@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
-
 interface NavLinkProps {
     active: boolean,
     href: string
